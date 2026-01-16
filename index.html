@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistant du Pèlerin – Omra</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f4f8f4;color:#1f3d2b}
+header{background:linear-gradient(180deg,#0f5132,#198754);color:#fff;text-align:center;padding:20px}
+header h1{margin:5px 0;font-size:22px}
+.container{padding:15px}
+.card{background:#fff;border-radius:12px;padding:15px;margin-bottom:15px;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+.card h2{margin-top:0;font-size:18px;color:#0f5132}
+.btn{display:block;text-align:center;padding:12px;margin:8px 0;background:#198754;color:#fff;text-decoration:none;border-radius:10px;font-size:16px;font-weight:bold}
+.btn.secondary{background:#0f5132}
+.btn.danger{background:#dc3545}
+footer{text-align:center;font-size:12px;color:#555;padding:10px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🕋 Assistant du Pèlerin</h1>
+<p>Bismillah – Carte NFC Omra</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>👤 Informations du pèlerin</h2>
+<p><strong>Nom :</strong> ____________________</p>
+<p><strong>Groupe :</strong> ____ | <strong>Bus :</strong> ____</p>
+</div>
+
+<div class="card">
+<h2>🕋 Guide Omra</h2>
+<ol>
+<li>Ihram & Talbiya</li>
+<li>Tawaf</li>
+<li>Sa’i Safa ↔ Marwa</li>
+<li>Coupe des cheveux</li>
+</ol>
+</div>
+
+<div class="card">
+<h2>🔊 Douas (Audio)</h2>
+<audio controls style="width:100%">
+<source src="https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3" type="audio/mpeg">
+</audio>
+</div>
+
+<div class="card" id="prayer">
+<h2>⏰ Horaires de prière (Makkah)</h2>
+<p id="prayerTimes">Chargement...</p>
+</div>
+
+<div class="card">
+<h2>📍 Lieux utiles</h2>
+<a class="btn" href="https://maps.google.com?q=Masjid+al+Haram" target="_blank">🕋 Masjid Al‑Haram</a>
+<a class="btn" href="https://maps.google.com?q=Hotel+Pilgrim+Makkah" target="_blank">🏨 Retour à l’hôtel</a>
+</div>
+
+<div class="card">
+<h2>🚨 Urgence</h2>
+<a class="btn danger" href="#" onclick="sendLocation()">📍 Je suis perdu</a>
+</div>
+
+</div>
+
+<footer>
+Carte NFC Omra – Assistant du Pèlerin
+</footer>
+
+<script>
+fetch('https://api.aladhan.com/v1/timingsByCity?city=Mecca&country=Saudi%20Arabia&method=4')
+.then(r=>r.json()).then(d=>{
+const t=d.data.timings;
+document.getElementById('prayerTimes').innerHTML=
+`Fajr: ${t.Fajr}<br>Dhuhr: ${t.Dhuhr}<br>Asr: ${t.Asr}<br>Maghrib: ${t.Maghrib}<br>Isha: ${t.Isha}`;
+});
+
+function sendLocation(){
+if(navigator.geolocation){
+navigator.geolocation.getCurrentPosition(pos=>{
+const lat=pos.coords.latitude;
+const lon=pos.coords.longitude;
+const link=`https://maps.google.com/?q=${lat},${lon}`;
+const phone='213000000000';
+const msg=encodeURIComponent('Je suis perdu. Ma position: '+link);
+window.open(`https://wa.me/${phone}?text=${msg}`,'_blank');
+});
+}}
+</script>
+
+</body>
+</html>
