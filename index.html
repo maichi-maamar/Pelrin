@@ -114,12 +114,13 @@
       <li>Carte hôtel</li>
     </ul>
     <!-- Tasbih -->
+    <!-- Tasbih -->
   <div class="card">
     <h2>📿 Tasbih numérique</h2>
-    <p>Compteur : <strong><span id="count">0</span> / 33</strong></p>
-    <button class="btn" onclick="addTasbih()">➕ Bouton 1</button>
-    <button class="btn secondary" onclick="removeTasbih()">➖ Bouton 2</button>
-    <button class="btn danger" onclick="resetTasbih()">🔄 Bouton 3 (Reset)</button>
+    <p>Compteur : <strong><span id="tasbihCount">0</span> / 33</strong></p>
+    <button class="btn" type="button" onclick="tasbihPlus()">➕ Bouton 1</button>
+    <button class="btn secondary" type="button" onclick="tasbihMinus()">➖ Bouton 2</button>
+    <button class="btn danger" type="button" onclick="tasbihReset()">🔄 Bouton 3 (Reset)</button>
   </div>
 
   <!-- Communication famille -->
@@ -185,18 +186,26 @@ Montrez ce lien au responsable :
     alert('GPS non supporté sur ce téléphone');
   }
 }
-function addTasbih(){
-  let c = document.getElementById('count');
-  let v = parseInt(c.innerText);
-  if(v < 33){ c.innerText = v + 1; }
+// Tasbih numérique (0 → 33)
+let tasbihValue = 0;
+
+function tasbihPlus(){
+  if(tasbihValue < 33){
+    tasbihValue++;
+    document.getElementById('tasbihCount').innerText = tasbihValue;
+  }
 }
-function removeTasbih(){
-  let c = document.getElementById('count');
-  let v = parseInt(c.innerText);
-  if(v > 0){ c.innerText = v - 1; }
+
+function tasbihMinus(){
+  if(tasbihValue > 0){
+    tasbihValue--;
+    document.getElementById('tasbihCount').innerText = tasbihValue;
+  }
 }
-function resetTasbih(){
-  document.getElementById('count').innerText = 0;
+
+function tasbihReset(){
+  tasbihValue = 0;
+  document.getElementById('tasbihCount').innerText = tasbihValue;
 }
 </script>
 
