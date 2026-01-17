@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Assistant du Pèlerin – Omra</title>
+  <title>Assistant du Pèlerin دليل الحاج او المعتمر</title>
   <style>
     body{
       margin:0; font-family: Arial, sans-serif; background:#f4f8f4; color:#1f3d2b;
@@ -36,18 +36,18 @@
 <body>
 
 <header>
-  <h1>🕋 Assistant du Pèlerin</h1>
-  <p>Bismillah – Carte Omra NFC</p>
+  <h1>🕋 Assistant du Pèlerin دليل الحاج او المعتمر </h1>
+  <p>Bismillah بسم الله</p>
 </header>
 
 <div class="container">
 
-  <!-- Informations pèlerin -->
+  <!-- Informations pèlerin معلومات الحاج او المعتمر-->
   <div class="card">
-    <h2>👤 Informations du pèlerin</h2>
-    <p><strong>Nom :</strong> ................................</p>
-    <p><strong>Groupe :</strong> ............ | <strong>Bus :</strong> ............</p>
-    <p><strong>Agence :</strong> ..............................</p>
+    <h2>👤 Informations du pèlerin معلومات الحاج او المعتمر</h2>
+    <p><strong>Nom الإسم:</strong> ................................</p>
+    <p><strong>Groupe المجموعة:</strong> ............ | <strong>Bus :</strong> ............</p>
+    <p><strong>Agence الوكالة:</strong> ..............................</p>
   </div>
 
   <!-- Rituels Omra -->
@@ -62,21 +62,21 @@
     
 
   <div class="card">
-    <h2>📍 Lieux importants</h2>
-    <a class="btn" href="https://maps.google.com?q=Masjid+al+Haram" target="_blank">🕋 Masjid Al‑Haram</a>
-    <a class="btn" href="https://maps.google.com?q=Masjid+Nabawi" target="_blank">🕌 Masjid Nabawi</a>
-    <a class="btn" href="https://maps.google.com?q=Hotel+Pilgrim+Makkah" target="_blank">🏨 Retour à l’hôtel (GPS)</a>
+    <h2>📍 Lieux importants الاماكن المهمة للحاج او المعتمر</h2>
+    <a class="btn" href="https://maps.google.com?q=Masjid+al+Haram" target="_blank">🕋 Masjid Al‑Haram مسجد الحرم</a>
+    <a class="btn" href="https://maps.google.com?q=Masjid+Nabawi" target="_blank">🕌 Masjid Nabawi المسجد النبوي</a>
+    <a class="btn" href="https://maps.google.com?q=Hotel+Pilgrim+Makkah" target="_blank">🏨 Retour à l’hôtel (GPS) العودة إلى الفندق</a>
   </div>
 
   <!-- Groupe -->
   <div class="card">
-    <h2>🚌 Groupe & guide</h2>
-    <p><strong>Guide :</strong> ............................</p>
-    <p><strong>Téléphone :</strong> .....................</p>
+    <h2>🚌 guide المرشد</h2>
+    <p><strong>Guide المرشد :</strong> ............................</p>
+    <p><strong>Téléphone رقم الهاتف:</strong> .....................</p>
     <a class="btn secondary" href="tel:+213000000000">📞 Appeler le guide إتصل بالمرشد</a>
   </div>
 
-  <!-- Urgence -->
+  <!-- Urgence إستعجلات-->
   <div class="card">
     <h2>🚨 Urgence</h2>
     <a class="btn danger" href="tel:997">🚑 Ambulance</a>
@@ -86,12 +86,12 @@
 
   <!-- Documents -->
   <div class="card">
-    <h2>📄 Documents</h2>
+    <h2>📄 Documents وثائق</h2>
     <ul>
-      <li>Passeport (photo)</li>
-      <li>Visa Omra</li>
+      <li>Passeport جواز السفر</li>
+      <li>Visa Omra فيزا</li>
       <li>Billet avion</li>
-      <li>Carte hôtel</li>
+      <li>Carte hôtel بطاقة الفندق</li>
     </ul>
     
 
@@ -115,22 +115,6 @@
 </footer>
 
 <script>
-// Horaires de prière via API AlAdhan
-fetch('https://api.aladhan.com/v1/timingsByCity?city=Mecca&country=Saudi%20Arabia&method=4')
-  .then(r => r.json())
-  .then(data => {
-    const t = data.data.timings;
-    document.getElementById('prayerTimes').innerHTML = `
-      Fajr : ${t.Fajr}<br>
-      Dhuhr : ${t.Dhuhr}<br>
-      Asr : ${t.Asr}<br>
-      Maghrib : ${t.Maghrib}<br>
-      Isha : ${t.Isha}
-    `;
-  })
-  .catch(() => {
-    document.getElementById('prayerTimes').innerText = 'Impossible de charger les horaires.';
-  });
 // Fonction GPS – Je suis perdu
 function sendLocation(){
   if(navigator.geolocation){
@@ -158,27 +142,7 @@ Montrez ce lien au responsable :
     alert('GPS non supporté sur ce téléphone');
   }
 }
-// Tasbih numérique (0 → 33)
-let tasbihValue = 0;
 
-function tasbihPlus(){
-  if(tasbihValue < 33){
-    tasbihValue++;
-    document.getElementById('tasbihCount').innerText = tasbihValue;
-  }
-}
-
-function tasbihMinus(){
-  if(tasbihValue > 0){
-    tasbihValue--;
-    document.getElementById('tasbihCount').innerText = tasbihValue;
-  }
-}
-
-function tasbihReset(){
-  tasbihValue = 0;
-  document.getElementById('tasbihCount').innerText = tasbihValue;
-}
 </script>
 
 </body>
