@@ -73,7 +73,7 @@
     <h2>🚌 guide المرشد</h2>
     <p><strong>Guide المرشد :</strong> ............................</p>
     <p><strong>Téléphone رقم الهاتف:</strong> .....................</p>
-    <a class="btn secondary" href="tel:+213000000000">📞 Appeler le guide إتصل بالمرشد</a>
+    <a class="btn secondary" href="tel:00213771651625">📞 Appeler le guide إتصل بالمرشد</a>
   </div>
 
   <!-- Urgence إستعجلات-->
@@ -115,34 +115,38 @@
 </footer>
 
 <script>
-// Fonction GPS – Je suis perdu
-function sendLocation(){
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(pos => {
-      const lat = pos.coords.latitude;
-      const lon = pos.coords.longitude;
-      const maps = `https://maps.google.com/?q=${lat},${lon}`;
-      const phone = '213000000000'; // numéro du guide
-      const msg = encodeURIComponent('Je suis perdu. Voici ma position : ' + maps);
-      window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
-    }, () => {
-      alert('Impossible de récupérer la position GPS.');
-    });
-  } else {
-    alert('GPS non supporté sur ce téléphone');
+function sendLocation() {
+  if (!navigator.geolocation) {
+    alert("Le GPS n'est pas supporté sur ce téléphone.");
+    return;
   }
-},${lon}`;
-      alert('Votre position a été détectée.
-Montrez ce lien au responsable :
-' + maps);
-    }, () => {
-      alert('Impossible de récupérer la position GPS.');
-    });
-  } else {
-    alert('GPS non supporté sur ce téléphone');
-  }
-}
 
+  navigator.geolocation.getCurrentPosition(
+    function (position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      const mapsLink = "https://maps.google.com/?q=" + lat + "," + lon;
+
+      const guidePhone = "00213771651625"; // ⬅️ Numéro WhatsApp du guide (sans +)
+      const message = encodeURIComponent(
+        "Je suis perdu. Voici ma position exacte : " + mapsLink
+      );
+
+      window.open(
+        "https://wa.me/" + guidePhone + "?text=" + message,
+        "_blank"
+      );
+    },
+    function () {
+      alert("Impossible de récupérer votre position GPS.");
+    },
+    {
+      enableHighAccuracy: true,
+      timeout: 10000
+    }
+  );
+}
 </script>
 
 </body>
