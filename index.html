@@ -148,6 +148,26 @@ function sendLocation() {
   );
 }
 </script>
+<script>
+function activateCard() {
+  const codeCorrect = "OMRA2026"; // 🔐 code que tu choisis
 
+  const userCode = prompt(
+    "Veuillez entrer le code d’activation de la carte :"
+  );
+
+  if (userCode === null) return;
+
+  if (userCode === codeCorrect) {
+    window.open(
+      "https://docs.google.com/spreadsheets/d/XXXXXXXXXXXX/edit",
+      "_blank"
+    );
+  } else {
+    alert("❌ Code incorrect. Accès refusé.");
+  }
+}
+</script>
+    
 </body>
 </html>
