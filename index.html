@@ -148,26 +148,13 @@ function sendLocation() {
   );
 }
 </script>
-</script>
-function activateCard() {
-  const codeCorrect = "OMRA2026"; // 🔐 code que tu choisis
 
-  const userCode = prompt(
-    "Veuillez entrer le code d’activation de la carte :"
-  );
-
-  if (userCode === null) return;
-
-  if (userCode === codeCorrect) {
-    window.open(
-      "https://docs.google.com/spreadsheets/d/1rAyzgFImRNkOR3kZeQhU0DzZ4LAMJnQGSlAn1sc7FnY/edit?usp=drivesdk",
-      "_blank"
-    );
-  } else {
-    alert("❌ Code incorrect. Accès refusé.");
-  }
-}
-</script>
+<a class="btn" 
+   href="https://docs.google.com/spreadsheets/d/1rAyzgFImRNkOR3kZeQhU0DzZ4LAMJnQGSlAn1sc7FnY/edit?usp=drivesdk" 
+   target="_blank">
+📄 Activer la carte
+</a>
+    
     
 </body>
 </html>
