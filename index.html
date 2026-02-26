@@ -1,159 +1,107 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Assistant du Pèlerin دليل الحاج او المعتمر</title>
-  <style>
-    body{
-      margin:0; font-family: Arial, sans-serif; background:#f4f8f4; color:#1f3d2b;
-    }
-    header{
-      background:linear-gradient(180deg,#0f5132,#198754);
-      color:white; text-align:center; padding:20px;
-    }
-    header h1{margin:5px 0; font-size:22px;}
-    header p{margin:0; font-size:14px;}
-    .container{padding:15px;}
-    .card{
-      background:white; border-radius:12px; padding:15px; margin-bottom:15px;
-      box-shadow:0 2px 6px rgba(0,0,0,0.1);
-    }
-    .card h2{margin-top:0; font-size:18px; color:#0f5132;}
-    .btn{
-      display:block; text-align:center; padding:12px; margin:8px 0;
-      background:#198754; color:white; text-decoration:none; border-radius:10px;
-      font-size:16px; font-weight:bold;
-    }
-    .btn.secondary{background:#0f5132;}
-    .btn.danger{background:#dc3545;}
-    ul{padding-left:18px;}
-    footer{
-      text-align:center; font-size:12px; color:#555; padding:10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistant du Pèlerin</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#f4f8f4;color:#1f3d2b}
+header{background:linear-gradient(180deg,#0f5132,#198754);color:white;text-align:center;padding:20px}
+.container{padding:15px}
+.card{background:white;border-radius:12px;padding:15px;margin-bottom:15px;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+.btn{display:block;text-align:center;padding:12px;margin:8px 0;background:#198754;color:white;text-decoration:none;border-radius:10px;font-weight:bold}
+.btn.secondary{background:#0f5132}
+.btn.danger{background:#dc3545}
+</style>
 </head>
+
 <body>
 
 <header>
-  <h1>🕋 Assistant du Pèlerin دليل الحاج او المعتمر </h1>
-  <p>Bismillah بسم الله</p>
+<h1>🕋 Assistant du Pèlerin</h1>
+<p>Bismillah</p>
 </header>
 
 <div class="container">
 
-  <!-- Informations pèlerin معلومات الحاج او المعتمر-->
-  <div class="card">
-    <h2>👤 Informations du pèlerin معلومات الحاج او المعتمر</h2>
-    <p><strong>Nom الإسم:</strong> ................................</p>
-    <p><strong>Groupe المجموعة:</strong> ............ | <strong>Bus :</strong> ............</p>
-    <p><strong>Agence الوكالة:</strong> ..............................</p>
-  </div>
+<div class="card">
+<h2>👤 Informations</h2>
+<p><strong>Nom :</strong> <span id="nom"></span></p>
+<p><strong>Groupe :</strong> <span id="groupe"></span> | <strong>Bus :</strong> <span id="bus"></span></p>
+<p><strong>Agence :</strong> <span id="agence"></span></p>
+</div>
 
-  <!-- Rituels Omra -->
-  <div class="card">
-    <h2>🕋 Guide des rituels Omra</h2>
-    <ol>
-      <li>Ihram الإحرام – Niyya & Talbiya</li>
-      <li>Tawaf الطواف (7 tours)</li>
-      <li>Sa'i Safa ↔ Marwa السعي : الصفى و المروى</li>
-      <li>Coupe des cheveux حلق الشعر</li>
-    </ol>
-    
+<div class="card">
+<h2>🚌 Guide</h2>
+<p><strong>Guide :</strong> <span id="guide"></span></p>
+<p><strong>Téléphone :</strong> <span id="telGuide"></span></p>
+<a id="callGuide" class="btn secondary">📞 Appeler le guide</a>
+</div>
 
-  <div class="card">
-    <h2>📍 Lieux importants الاماكن المهمة للحاج او المعتمر</h2>
-    <a class="btn" href="https://maps.google.com?q=Masjid+al+Haram" target="_blank">🕋 Masjid Al‑Haram مسجد الحرم</a>
-    <a class="btn" href="https://maps.google.com?q=Masjid+Nabawi" target="_blank">🕌 Masjid Nabawi المسجد النبوي</a>
-    <a class="btn" href="https://maps.google.com?q=Hotel+Pilgrim+Makkah" target="_blank">🏨 Retour à l’hôtel (GPS) العودة إلى الفندق</a>
-  </div>
+<div class="card">
+<h2>🏨 Hôtel</h2>
+<a id="hotelLink" class="btn">📍 Retour à l’hôtel</a>
+</div>
 
-  <!-- Groupe -->
-  <div class="card">
-    <h2>🚌 guide المرشد</h2>
-    <p><strong>Guide المرشد :</strong> ............................</p>
-    <p><strong>Téléphone رقم الهاتف:</strong> .....................</p>
-    <a class="btn secondary" href="tel:00213771651625">📞 Appeler le guide إتصل بالمرشد</a>
-  </div>
-
-  <!-- Urgence إستعجلات-->
-  <div class="card">
-    <h2>🚨 Urgence</h2>
-    
-    <a class="btn danger" href="#" onclick="sendLocation()">📍 Je suis perdu (envoyer ma position)</a>
-  </div>
-
-  <!-- Documents -->
-  <div class="card">
-    <h2>📄 Documents وثائق</h2>
-    <ul>
-      <li>Passeport جواز السفر</li>
-      <li>Visa Omra فيزا</li>
-      <li>Billet avion</li>
-      <li>Carte hôtel بطاقة الفندق</li>
-    </ul>
-    
-
-  <!-- Communication famille مواصلات مع العائلة -->
-  <div class="card">
-    <h2>📲 Communication famille مواصلات مع العائلة</h2>
-    <a class="btn" href="https://wa.me/?text=Alhamdulillah%20je%20vais%20bien%20depuis%20la%20Omra" target="_blank">💚 WhatsApp Famille</a>
-  </div>
-
-  <!-- Avis après Omra -->
-  <div class="card">
-    <h2>⭐ Avis après Omra</h2>
-    <p>Votre avis nous aide beaucoup.</p>
-    <a class="btn secondary" href="https://www.google.com/search?q=google+reviews+agence+omra" target="_blank">📝 Donner mon avis Google</a>
-  </div>
+<div class="card">
+<h2>🚨 Urgence</h2>
+<a class="btn danger" onclick="sendLocation()">Je suis perdu</a>
+</div>
 
 </div>
 
-<footer>
-  Carte NFC Omra – Assistant du pèlerin 349 مرشد المعتمر او الحاج
-</footer>
-
 <script>
-function sendLocation() {
-  if (!navigator.geolocation) {
-    alert("Le GPS n'est pas supporté sur ce téléphone.");
-    return;
-  }
 
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      const lat = position.coords.latitude;
-      const lon = position.coords.longitude;
+const sheetURL = "COLLE_ICI_TON_LIEN_CSV";
 
-      const mapsLink = "https://maps.google.com/?q=" + lat + "," + lon;
+async function loadData() {
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get("id");
 
-      const guidePhone = "00213771651625"; // ⬅️ Numéro WhatsApp du guide (sans +)
-      const message = encodeURIComponent(
-        "Je suis perdu. Voici ma position exacte : " + mapsLink
-      );
-
-      window.open(
-        "https://wa.me/" + guidePhone + "?text=" + message,
-        "_blank"
-      );
-    },
-    function () {
-      alert("Impossible de récupérer votre position GPS.");
-    },
-    {
-      enableHighAccuracy: true,
-      timeout: 10000
-    }
-  );
+if (!id) {
+document.body.innerHTML = "<h2>Carte non reconnue</h2>";
+return;
 }
+
+const response = await fetch(sheetURL);
+const data = await response.text();
+const rows = data.split("\n").map(r => r.split(","));
+
+for (let i = 1; i < rows.length; i++) {
+if (rows[i][0] == id) {
+
+if(rows[i][8] !== "OUI"){
+document.body.innerHTML = "<h2>Carte non activée</h2>";
+return;
+}
+
+document.getElementById("nom").innerText = rows[i][1];
+document.getElementById("groupe").innerText = rows[i][2];
+document.getElementById("bus").innerText = rows[i][3];
+document.getElementById("agence").innerText = rows[i][4];
+document.getElementById("guide").innerText = rows[i][5];
+document.getElementById("telGuide").innerText = rows[i][6];
+
+document.getElementById("callGuide").href = "tel:" + rows[i][6];
+document.getElementById("hotelLink").href = rows[i][7];
+
+window.guidePhone = rows[i][6];
+}
+}
+}
+
+function sendLocation(){
+navigator.geolocation.getCurrentPosition(function(pos){
+const mapsLink = "https://maps.google.com/?q="+pos.coords.latitude+","+pos.coords.longitude;
+const message = encodeURIComponent("Je suis perdu. Ma position : "+mapsLink);
+window.open("https://wa.me/"+window.guidePhone+"?text="+message,"_blank");
+});
+}
+
+window.onload = loadData;
+
 </script>
 
-<a class="btn" 
-   href="https://docs.google.com/spreadsheets/d/1rAyzgFImRNkOR3kZeQhU0DzZ4LAMJnQGSlAn1sc7FnY/edit?usp=drivesdk" 
-   target="_blank">
-📄 Activer la carte 349
-</a>
-    
-    
 </body>
 </html>
