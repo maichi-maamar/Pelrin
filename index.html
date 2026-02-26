@@ -55,6 +55,25 @@ header{background:linear-gradient(180deg,#0f5132,#198754);color:white;text-align
   <button onclick="updateTawaf(-1)">-1</button>
   <button onclick="resetTawaf()">Réinitialiser</button>
 </div>
+
+<div class="card">
+  <h2>✋ Tasbih numérique</h2>
+
+  <p>Compteur 1 : <span id="tasbih1">0</span> / 33</p>
+  <button onclick="updateTasbih('tasbih1',1)">+1</button>
+  <button onclick="updateTasbih('tasbih1',-1)">-1</button>
+  <button onclick="resetTasbih('tasbih1')">Réinitialiser</button>
+
+  <p>Compteur 2 : <span id="tasbih2">0</span> / 33</p>
+  <button onclick="updateTasbih('tasbih2',1)">+1</button>
+  <button onclick="updateTasbih('tasbih2',-1)">-1</button>
+  <button onclick="resetTasbih('tasbih2')">Réinitialiser</button>
+
+  <p>Compteur 3 : <span id="tasbih3">0</span> / 33</p>
+  <button onclick="updateTasbih('tasbih3',1)">+1</button>
+  <button onclick="updateTasbih('tasbih3',-1)">-1</button>
+  <button onclick="resetTasbih('tasbih3')">Réinitialiser</button>
+</div>
   
 </div>
 
@@ -121,7 +140,19 @@ function resetTawaf() {
   tawafCount = 0;
   document.getElementById("tawafCount").innerText = tawafCount;
 }
-  
+
+function updateTasbih(id,val){
+  let span = document.getElementById(id);
+  let count = parseInt(span.innerText);
+  count += val;
+  if(count < 0) count = 0;
+  if(count > 33) count = 33;
+  span.innerText = count;
+}
+
+function resetTasbih(id){
+  document.getElementById(id).innerText = 0;
+}
 </script>
 
 </body>
