@@ -48,7 +48,14 @@ header{background:linear-gradient(180deg,#0f5132,#198754);color:white;text-align
 <h2>🚨 Urgence</h2>
 <a class="btn danger" onclick="sendLocation()">Je suis perdu</a>
 </div>
-
+<div class="card">
+  <h2>🔁 Compteur Tawaf & Sa’i</h2>
+  <p>Tours effectués : <span id="tawafCount">0</span> / 7</p>
+  <button onclick="updateTawaf(1)">+1</button>
+  <button onclick="updateTawaf(-1)">-1</button>
+  <button onclick="resetTawaf()">Réinitialiser</button>
+</div>
+  
 </div>
 
 <script>
@@ -101,6 +108,20 @@ window.open("https://wa.me/"+window.guidePhone+"?text="+message,"_blank");
 
 window.onload = loadData;
 
+let tawafCount = 0;
+
+function updateTawaf(val) {
+  tawafCount += val;
+  if (tawafCount < 0) tawafCount = 0;
+  if (tawafCount > 7) tawafCount = 7;
+  document.getElementById("tawafCount").innerText = tawafCount;
+}
+
+function resetTawaf() {
+  tawafCount = 0;
+  document.getElementById("tawafCount").innerText = tawafCount;
+}
+  
 </script>
 
 </body>
