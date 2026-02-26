@@ -4,18 +4,55 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Assistant du Pèlerin</title>
-
 <style>
-body{margin:0;font-family:Arial;background:#f4f8f4;color:#1f3d2b}
-header{background:linear-gradient(180deg,#0f5132,#198754);color:white;text-align:center;padding:20px}
-.container{padding:15px}
-.card{background:white;border-radius:12px;padding:15px;margin-bottom:15px;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
-.btn{display:block;text-align:center;padding:12px;margin:8px 0;background:#198754;color:white;text-decoration:none;border-radius:10px;font-weight:bold}
-.btn.secondary{background:#0f5132}
-.btn.danger{background:#dc3545}
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#FFF8E7; /* beige clair */
+  color:#2C3E50; /* texte principal */
+}
+header{
+  background: linear-gradient(45deg, #FF6B6B, #FFD93D); /* dégradé orange → rose */
+  color:white;
+  text-align:center;
+  padding:20px;
+}
+header h1{margin:5px 0;font-size:22px;}
+header p{margin:0;font-size:14px;}
+.container{padding:15px;}
+.card{
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:15px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+h2{color:#FF6B6B;}
+.btn{
+  display:block;
+  text-align:center;
+  padding:12px;
+  margin:8px 0;
+  background:#1ABC9C; /* turquoise vif */
+  color:white;
+  text-decoration:none;
+  border-radius:10px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.btn.secondary{background:#2980B9;} /* bleu royal */
+.btn.danger{background:#E74C3C;} /* rouge vif */
+button{
+  margin:2px;
+  padding:6px 12px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
 </style>
 </head>
-
 <body>
 
 <header>
@@ -25,6 +62,7 @@ header{background:linear-gradient(180deg,#0f5132,#198754);color:white;text-align
 
 <div class="container">
 
+<!-- Informations -->
 <div class="card">
 <h2>👤 Informations</h2>
 <p><strong>Nom :</strong> <span id="nom"></span></p>
@@ -32,6 +70,7 @@ header{background:linear-gradient(180deg,#0f5132,#198754);color:white;text-align
 <p><strong>Agence :</strong> <span id="agence"></span></p>
 </div>
 
+<!-- Guide -->
 <div class="card">
 <h2>🚌 Guide</h2>
 <p><strong>Guide :</strong> <span id="guide"></span></p>
@@ -39,120 +78,96 @@ header{background:linear-gradient(180deg,#0f5132,#198754);color:white;text-align
 <a id="callGuide" class="btn secondary">📞 Appeler le guide</a>
 </div>
 
+<!-- Hôtel -->
 <div class="card">
 <h2>🏨 Hôtel</h2>
 <a id="hotelLink" class="btn">📍 Retour à l’hôtel</a>
 </div>
 
+<!-- Urgence GPS -->
 <div class="card">
 <h2>🚨 Urgence</h2>
-<a class="btn danger" onclick="sendLocation()">Je suis perdu</a>
+<a class="btn danger" onclick="sendLocation()">📍 Je suis perdu</a>
 </div>
+
+<!-- Compteur Tawaf -->
 <div class="card">
-  <h2>🔁 Compteur Tawaf & Sa’i</h2>
-  <p>Tours effectués : <span id="tawafCount">0</span> / 7</p>
-  <button onclick="updateTawaf(1)">+1</button>
-  <button onclick="updateTawaf(-1)">-1</button>
-  <button onclick="resetTawaf()">Réinitialiser</button>
+<h2>🔁 Compteur Tawaf & Sa’i</h2>
+<p>Tours effectués : <span id="tawafCount">0</span> / 7</p>
+<button onclick="updateTawaf(1)">+1</button>
+<button onclick="updateTawaf(-1)">-1</button>
+<button onclick="resetTawaf()">Réinitialiser</button>
 </div>
 
+<!-- Tasbih -->
 <div class="card">
-  <h2>✋ Tasbih numérique</h2>
+<h2>✋ Tasbih numérique</h2>
+<p>Compteur 1 : <span id="tasbih1">0</span> / 33</p>
+<button onclick="updateTasbih('tasbih1',1)">+1</button>
+<button onclick="updateTasbih('tasbih1',-1)">-1</button>
+<button onclick="resetTasbih('tasbih1')">Réinitialiser</button>
 
-  <p>Compteur 1 : <span id="tasbih1">0</span> / 33</p>
-  <button onclick="updateTasbih('tasbih1',1)">+1</button>
-  <button onclick="updateTasbih('tasbih1',-1)">-1</button>
-  <button onclick="resetTasbih('tasbih1')">Réinitialiser</button>
+<p>Compteur 2 : <span id="tasbih2">0</span> / 33</p>
+<button onclick="updateTasbih('tasbih2',1)">+1</button>
+<button onclick="updateTasbih('tasbih2',-1)">-1</button>
+<button onclick="resetTasbih('tasbih2')">Réinitialiser</button>
 
-  <p>Compteur 2 : <span id="tasbih2">0</span> / 33</p>
-  <button onclick="updateTasbih('tasbih2',1)">+1</button>
-  <button onclick="updateTasbih('tasbih2',-1)">-1</button>
-  <button onclick="resetTasbih('tasbih2')">Réinitialiser</button>
-
-  <p>Compteur 3 : <span id="tasbih3">0</span> / 33</p>
-  <button onclick="updateTasbih('tasbih3',1)">+1</button>
-  <button onclick="updateTasbih('tasbih3',-1)">-1</button>
-  <button onclick="resetTasbih('tasbih3')">Réinitialiser</button>
+<p>Compteur 3 : <span id="tasbih3">0</span> / 33</p>
+<button onclick="updateTasbih('tasbih3',1)">+1</button>
+<button onclick="updateTasbih('tasbih3',-1)">-1</button>
+<button onclick="resetTasbih('tasbih3')">Réinitialiser</button>
 </div>
-  
+
 </div>
 
 <script>
-
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRV06aHo_qvl8MAMp5K8C-67XQFCpRbP1i60s9mVlo-oEH3jtteL022um7uUc6Drd9Vy2Gt0GqJ6yWk/pub?gid=0&single=true&output=csv";
+// Google Sheet dynamique
+const sheetURL = "COLLE_ICI_TON_LIEN_CSV";
 
 async function loadData() {
-const urlParams = new URLSearchParams(window.location.search);
-const id = urlParams.get("id");
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("id");
+  if (!id){ document.body.innerHTML="<h2>Carte non reconnue</h2>"; return; }
 
-if (!id) {
-document.body.innerHTML = "<h2>Carte non reconnue</h2>";
-return;
-}
-
-const response = await fetch(sheetURL);
-const data = await response.text();
-const rows = data.split("\n").map(r => r.split(","));
-
-for (let i = 1; i < rows.length; i++) {
-if (rows[i][0] == id) {
-
-if(rows[i][8] !== "OUI"){
-document.body.innerHTML = "<h2>Carte non activée</h2>";
-return;
-}
-
-document.getElementById("nom").innerText = rows[i][1];
-document.getElementById("groupe").innerText = rows[i][2];
-document.getElementById("bus").innerText = rows[i][3];
-document.getElementById("agence").innerText = rows[i][4];
-document.getElementById("guide").innerText = rows[i][5];
-document.getElementById("telGuide").innerText = rows[i][6];
-
-document.getElementById("callGuide").href = "tel:" + rows[i][6];
-document.getElementById("hotelLink").href = rows[i][7];
-
-window.guidePhone = rows[i][6];
-}
-}
+  const response = await fetch(sheetURL);
+  const data = await response.text();
+  const rows = data.split("\n").map(r=>r.split(","));
+  
+  for(let i=1;i<rows.length;i++){
+    if(rows[i][0]==id){
+      if(rows[i][8]!=="OUI"){document.body.innerHTML="<h2>Carte non activée</h2>";return;}
+      document.getElementById("nom").innerText=rows[i][1];
+      document.getElementById("groupe").innerText=rows[i][2];
+      document.getElementById("bus").innerText=rows[i][3];
+      document.getElementById("agence").innerText=rows[i][4];
+      document.getElementById("guide").innerText=rows[i][5];
+      document.getElementById("telGuide").innerText=rows[i][6];
+      document.getElementById("callGuide").href="tel:"+rows[i][6];
+      document.getElementById("hotelLink").href=rows[i][7];
+      window.guidePhone=rows[i][6];
+    }
+  }
 }
 
 function sendLocation(){
-navigator.geolocation.getCurrentPosition(function(pos){
-const mapsLink = "https://maps.google.com/?q="+pos.coords.latitude+","+pos.coords.longitude;
-const message = encodeURIComponent("Je suis perdu. Ma position : "+mapsLink);
-window.open("https://wa.me/"+window.guidePhone+"?text="+message,"_blank");
-});
+  if(!navigator.geolocation){alert("Le GPS n'est pas supporté.");return;}
+  navigator.geolocation.getCurrentPosition(function(pos){
+    const mapsLink="https://maps.google.com/?q="+pos.coords.latitude+","+pos.coords.longitude;
+    const message=encodeURIComponent("Je suis perdu. Ma position : "+mapsLink);
+    window.open("https://wa.me/"+window.guidePhone+"?text="+message,"_blank");
+  });
 }
 
-window.onload = loadData;
+window.onload=loadData;
 
-let tawafCount = 0;
+// Tawaf & Sa’i
+let tawafCount=0;
+function updateTawaf(val){tawafCount+=val;if(tawafCount<0)tawafCount=0;if(tawafCount>7)tawafCount=7;document.getElementById("tawafCount").innerText=tawafCount;}
+function resetTawaf(){tawafCount=0;document.getElementById("tawafCount").innerText=tawafCount;}
 
-function updateTawaf(val) {
-  tawafCount += val;
-  if (tawafCount < 0) tawafCount = 0;
-  if (tawafCount > 7) tawafCount = 7;
-  document.getElementById("tawafCount").innerText = tawafCount;
-}
-
-function resetTawaf() {
-  tawafCount = 0;
-  document.getElementById("tawafCount").innerText = tawafCount;
-}
-
-function updateTasbih(id,val){
-  let span = document.getElementById(id);
-  let count = parseInt(span.innerText);
-  count += val;
-  if(count < 0) count = 0;
-  if(count > 33) count = 33;
-  span.innerText = count;
-}
-
-function resetTasbih(id){
-  document.getElementById(id).innerText = 0;
-}
+// Tasbih
+function updateTasbih(id,val){let span=document.getElementById(id);let count=parseInt(span.innerText);count+=val;if(count<0)count=0;if(count>33)count=33;span.innerText=count;}
+function resetTasbih(id){document.getElementById(id).innerText=0;}
 </script>
 
 </body>
